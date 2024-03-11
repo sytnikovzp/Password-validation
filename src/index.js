@@ -225,11 +225,10 @@ function emailValid(e) {
   if (reg.test(emailAddr)) {
     if (document.getElementById('error-message')) {
       document.getElementById('error-message').remove();
+    } else {
+      inputTextBlock.append(errormailmsg);
     }
-    return 'success';
   }
-  inputTextBlock.append(errormailmsg);
-  return 'error';
 }
 
 emailInput.addEventListener('blur', emailValid);
