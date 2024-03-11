@@ -57,12 +57,14 @@ pass.classList.add('elem-form');
 const passInput = document.createElement('input');
 passInput.setAttribute('type', 'password');
 passInput.setAttribute('placeholder', 'Password');
+passInput.setAttribute('id', 'pass');
 
 const confirmPass = document.createElement('div');
 confirmPass.classList.add('elem-form');
 const confirmPassInput = document.createElement('input');
 confirmPassInput.setAttribute('type', 'password');
 confirmPassInput.setAttribute('placeholder', 'Password Confirmation');
+confirmPassInput.setAttribute('id', 'confirm-pass');
 
 // ----- Create radiobutton group -----
 const divRadioButtonGroup = document.createElement('div');
@@ -126,8 +128,6 @@ buttonCreateAccount.textContent = 'Create account';
 buttonCreateAccount.setAttribute('href', '#');
 buttonCreateAccount.setAttribute('class', 'button');
 
-
-
 // ----- Insert to HTML body -----
 
 //       ----- Header -----
@@ -182,3 +182,28 @@ divCheckboxBlock.append(checkboxLabel);
 //   ----- Add button block -----
 form.append(divCreateAccountButton);
 divCreateAccountButton.append(buttonCreateAccount);
+
+//----- Add function Check password -----
+
+const errormsg = document.createElement('div');
+errormsg.setAttribute('id', 'error-message');
+errormsg.textContent = 'Passwords missmatch!';
+
+function passwordsMatch(e) {
+  e.preventDefault();
+  if (
+    document.getElementById('pass').value ===
+    document.getElementById('confirm-pass').value
+  ) {
+    if (document.getElementById('error-message')) {
+      document.getElementById('error-message').remove();
+    }
+    return 'success';
+  }
+  inputTextBlock.append(errormsg);
+  return 'error';
+}
+
+inputTextBlock.append(confirmPass);
+
+confirmPassInput.addEventListener('blur', passwordsMatch);
