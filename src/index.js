@@ -225,9 +225,9 @@ function emailValid(e) {
   if (reg.test(emailAddr)) {
     if (document.getElementById('error-message')) {
       document.getElementById('error-message').remove();
-    } else {
-      inputTextBlock.append(errormailmsg);
     }
+  } else {
+    inputTextBlock.append(errormailmsg);
   }
 }
 
