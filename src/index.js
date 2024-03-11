@@ -203,8 +203,6 @@ function checkPasswordsMatch(e) {
   }
 }
 
-inputTextBlock.append(confirmPass);
-
 confirmPassInput.addEventListener('blur', checkPasswordsMatch);
 
 //----- Add function Check e-mail -----
