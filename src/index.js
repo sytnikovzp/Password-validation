@@ -189,7 +189,7 @@ const errormsg = document.createElement('div');
 errormsg.setAttribute('id', 'error-message');
 errormsg.textContent = 'Passwords missmatch!';
 
-function passwordsMatch(e) {
+function checkPasswordsMatch(e) {
   e.preventDefault();
   if (
     document.getElementById('pass').value ===
@@ -198,12 +198,11 @@ function passwordsMatch(e) {
     if (document.getElementById('error-message')) {
       document.getElementById('error-message').remove();
     }
-    return 'success';
+  } else {
+    inputTextBlock.append(errormsg);
   }
-  inputTextBlock.append(errormsg);
-  return 'error';
 }
 
 inputTextBlock.append(confirmPass);
 
-confirmPassInput.addEventListener('blur', passwordsMatch);
+confirmPassInput.addEventListener('blur', checkPasswordsMatch);
