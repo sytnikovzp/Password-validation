@@ -185,9 +185,9 @@ divCreateAccountButton.append(buttonCreateAccount);
 
 //----- Add function Check password -----
 
-const errormsg = document.createElement('div');
-errormsg.setAttribute('id', 'error-message');
-errormsg.textContent = 'Passwords missmatch!';
+const errorpassmsg = document.createElement('div');
+errorpassmsg.setAttribute('id', 'error-message');
+errorpassmsg.textContent = 'Passwords missmatch!';
 
 function checkPasswordsMatch(e) {
   e.preventDefault();
@@ -199,10 +199,37 @@ function checkPasswordsMatch(e) {
       document.getElementById('error-message').remove();
     }
   } else {
-    inputTextBlock.append(errormsg);
+    inputTextBlock.append(errorpassmsg);
   }
 }
 
 inputTextBlock.append(confirmPass);
 
 confirmPassInput.addEventListener('blur', checkPasswordsMatch);
+
+//----- Add function Check e-mail -----
+
+const errormailmsg = document.createElement('div');
+errormailmsg.setAttribute('id', 'error-message');
+errormailmsg.textContent = 'Wrong email!';
+
+let emailAddr;
+
+emailInput.addEventListener('change', (e) => {
+  emailAddr = e.target.value;
+});
+
+function emailValid(e) {
+  e.preventDefault();
+  const reg = /^\w+\.?\w+@[a-z]{3,8}\.[a-z]{2,5}$/gi;
+  if (reg.test(emailAddr)) {
+    if (document.getElementById('error-message')) {
+      document.getElementById('error-message').remove();
+    }
+    return 'success';
+  }
+  inputTextBlock.append(errormailmsg);
+  return 'error';
+}
+
+emailInput.addEventListener('blur', emailValid);
