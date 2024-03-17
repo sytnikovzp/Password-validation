@@ -203,7 +203,7 @@ function checkPasswordsMatch(e) {
   }
 }
 
-confirmPassInput.addEventListener('blur', checkPasswordsMatch);
+confirmPassInput.addEventListener('change', checkPasswordsMatch);
 
 //----- Add function Check e-mail -----
 
@@ -229,4 +229,4 @@ function emailValid(e) {
   }
 }
 
-emailInput.addEventListener('blur', emailValid);
+emailInput.addEventListener('change', emailValid);
